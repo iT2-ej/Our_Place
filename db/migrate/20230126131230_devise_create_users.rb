@@ -1,12 +1,25 @@
 # frozen_string_literal: true
 
 class DeviseCreateUsers < ActiveRecord::Migration[6.1]
+  
+  def guest_sign_in
+    user = User.guest 
+    sign_in user
+    redirect_to root_path, notice: "ゲストユーザーとしてログインしました"
+  end
+  
   def change
     create_table :users do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
+      ## 名前を保存するカラム
+      t.string :user_name, null: false
+      t.string :last_name, null: false
+      t.string :first_name, null: false
+      t.string :last_name_kana, null: false
+      t.string :first_name_kana, null: false
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
@@ -32,10 +45,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
       
-      ## 名前を保存するカラム
-      t.string :name
-
-
       t.timestamps null: false
     end
 

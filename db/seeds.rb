@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Admin.create!(email: "admin@test.com", password: "password")
+
+(1..10).each do |i|
+  customer = Customer.create!(name: "customer#{i}", email: "customer#{i}@test.com", password: "password")
+  #rand(1..3).times do |n|
+  #  customer.posts.create!(content: "test" * (rend(30..40)))
+  #end
+end

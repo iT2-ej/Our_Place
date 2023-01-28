@@ -1,4 +1,4 @@
-test# Our Place
+# Our Place
 
 ## サイト概要
 ### サイトテーマ

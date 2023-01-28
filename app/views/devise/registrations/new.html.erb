@@ -3,32 +3,50 @@
 <%= form_with model: @user, url: user_registration_path do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   
-  <div class="field">
-  <%= f.label :name,"氏名" %><br>
-  <%= f.text_field :name %>
-</div>
+  <table class="table table-borderless">
+  <colgroup>
+    <col width="30%">
+    <col width="30%">
+    <col width="50%">
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>ユーザーネーム</td>
+      <td>
+        <%= f.text_field :user_name, autofocus: true %>
+      </td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+    </tr>
+    <tr>
+      <td>名前</td>
+      <td><%= f.label :last_name,"(姓)" %><%= f.text_field :last_name, autofocus: true %></td>
+      <td><%= f.label :first_name,"(名)" %><%= f.text_field :first_name, autofocus: true %></td>
+    </tr>
+    <tr>
+      <td>フリガナ</td>
+      <td><%= f.label :last_name_kana,"(セイ)" %><%= f.text_field :last_name_kana, autofocus: true %></td>
+      <td><%= f.label :first_name_kana,"(メイ)" %><%= f.text_field :first_name_kana, autofocus: true %></td>
+    </tr>
+    <tr>
+      <td>パスワード(6文字以上)</td>
+      <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+    </tr>
+    <tr>
+      <td>パスワード(確認用)</td>
+      <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+    </tr>
+  </tbody>
 
-  <div class="field">
-    <%= f.label :email,"メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password,"パスワード" %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation,"確認用" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
+</table>
   <div class="actions">
-    <%= f.submit "会員登録" %>
+    <%= f.submit "会員登録",class:"btn btn-success" %>
   </div>
 <% end %>
+<h2>既に登録済みの方</h2>
 
 <%= render "devise/shared/links" %>
+
+<%= link_to "ゲストログインは", users_guest_sign_in_path, data: { turbo_method: :post } %>
