@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'homes/top'
+  get 'users/show'
+  get 'users/edit'
   
   #root to: 'homes#index'
   root to: 'homes#top'
@@ -11,6 +13,8 @@ Rails.application.routes.draw do
   
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    resources :post_images, only: [:new, :create, :index, :show, :destroy]
+    resources :users, only: [:show, :edit]
   end
   
 end
