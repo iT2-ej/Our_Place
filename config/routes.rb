@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
+  devise_for :admin, controllers: {
+  sessions: "admin/sessions"
+  }
+  
   get 'homes/top'
-  get 'users/show'
-  get 'users/edit'
   
   #root to: 'homes#index'
   root to: 'homes#top'
    post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
   devise_for :users , controllers: {
-    registrations: 'users/registrations',
-    passwords: 'users/passwords',
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
   }
   
   devise_scope :user do

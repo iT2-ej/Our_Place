@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Users::PasswordsController < Devise::PasswordsController
+class Public::PasswordsController < Devise::PasswordsController
   before_action :ensure_normal_user, only: :create
   
   def ensure_normal_user

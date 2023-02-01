@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Public::Controller < ApplicationController
   def show
     @user =　Use.find(params[:id])
     @post_images = @user.post_images  
