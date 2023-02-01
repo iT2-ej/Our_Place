@@ -16,6 +16,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       
 
       ## 名前を保存するカラム
+      t.integer :user_id, null: false
       t.string :user_name, null: false
       t.string :last_name, null: false
       t.string :first_name, null: false

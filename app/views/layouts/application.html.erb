@@ -23,6 +23,9 @@
       <li>
         <%= link_to "ログイン", new_user_session_path %>
       </li>
+      <li>
+      <%= link_to 'マイページ', user_path(current_user.id) %>
+      </li>
     <% end %>
   </header>
     <%= yield %>
