@@ -2,12 +2,6 @@
 
 class DeviseCreateUsers < ActiveRecord::Migration[6.1]
   
-  def guest_sign_in
-    user = User.guest 
-    sign_in user
-    redirect_to root_path, notice: "ゲストユーザーとしてログインしました"
-  end
-  
   def change
     create_table :users do |t|
       ## Database authenticatable

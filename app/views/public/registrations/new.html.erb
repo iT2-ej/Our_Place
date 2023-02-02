@@ -11,6 +11,16 @@
   </colgroup>
   <tbody>
     <tr>
+      <td>
+        <% if list.image.attached? %>
+        <%= image_tag profile_image, size: "200x200" %>
+        <% else %>
+        <%= image_tag 'no_image', size: "200x200" %>
+        <% end %>
+      </td>
+      <td>プロフィール画像</td>
+    </tr>
+    <tr>
       <td>ユーザーネーム</td>
       <td>
         <%= f.text_field :user_name, autofocus: true %>
