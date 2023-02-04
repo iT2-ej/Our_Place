@@ -1,10 +1,10 @@
-class Public::Controller < ApplicationController
+class Public::UsersController < ApplicationController
   
   def new
   end
   
   def show
-    @user =　User.find(params[:id])
+    @user = User.find(params[:id])
     @profile_images = @user.profile_images
   end
 
