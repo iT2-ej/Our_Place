@@ -1,16 +1,9 @@
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-</div>
+<h1><%= @user.user_name %></h1>
+  <%= image_tag @user.get_profile_image(200,200) %>
 
-<!-- ユーザーの投稿一覧 -->
+<h2>自己紹介</h2>
+<%= @user.introduction %>
 
-<% @profile_images.each do |profile_image| %>
-<div>
-  <%= link_to post_image_path(post_image.id) do %>
-    <%= image_tag post_image.get_image %>
-  <% end %>
-  <p>プロフィール画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>
-  <p>ユーザーネーム：<%= post_image.user.name %></p>
-</div>
-<% end %>
+<h2>登録情報
+ <%= link_to "編集する", edit_public_user_path,class: "btn btn-success ml2" %>
+</h2>

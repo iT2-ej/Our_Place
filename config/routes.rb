@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
   
   namespace :public do
-    resources :users, only: [:new,:show, :edit]
+    resources :users, only: [:new,:show, :edit,:update]
   end
   
 end
