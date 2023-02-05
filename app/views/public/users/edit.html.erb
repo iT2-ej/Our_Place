@@ -8,6 +8,12 @@
     <col width="50%">
   </colgroup>
    <tbody>
+    <tr>
+     <td>
+      <label for="inputImage">ProfileImage</label>
+       <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %> 
+     </td>
+    </tr>
      <tr>
       <td>ユーザーネーム</td>
       <td>
