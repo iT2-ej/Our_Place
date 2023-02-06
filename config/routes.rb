@@ -21,7 +21,11 @@ Rails.application.routes.draw do
   end
   
   namespace :public do
+    get '/users/unsubscribe' => 'users#unsubscribe',as: 'unsubscribe'
+    patch '/users/withdraw' => 'users#withdraw',as: 'withdraw'
     resources :users, only: [:new,:show, :edit,:update]
+   
+    
   end
   
 end

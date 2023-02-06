@@ -13,8 +13,8 @@ class Public::UsersController < ApplicationController
   end
 
   def withdraw
-    @customer = current_customer
-    @customer.update(is_deleted: true)
+    @user = current_user
+    @user.update(is_deleted: true)
     reset_session
     redirect_to root_path
   end
