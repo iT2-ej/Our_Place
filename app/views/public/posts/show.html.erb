@@ -1,0 +1,33 @@
+<h1>投稿詳細</h1>
+<table>
+  <tr>
+   <td>
+　   <% if @post.image.attached? %>
+     <%= image_tag @post.image, size: "100x100" %>
+     <% end %>
+　 </td>
+    <td>
+      <%= @post.title %>
+    </td>
+    <td>
+      <%= @post.body %>
+    </td>
+  </tr>
+  <tr>
+   <td>
+　      <%= form_with model: [:public, @comment], local: true do |f| %>
+　          <%= f.hidden_field :post_id, value: @post.id %>
+            <%= f.text_area :comment_content, placeholder: "ここにコメントを入力" %>
+            <%= f.submit "決定" %>
+        <% end %>
+　    </td>
+　</tr>
+</table>
+     <% @post.comments.each do |co| %>
+　       <%= co.comment_content %>
+　       <% if co.user_id == current_user.id %>
+  　       <%= form_with model: co, url: public_comment_path, method: :delete,  local: true do |form| %>  
+  　        <%= form.submit "削除" %>
+  　       <% end %>
+         <% end %>
+　     <% end %>

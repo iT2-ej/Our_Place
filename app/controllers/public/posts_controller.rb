@@ -4,14 +4,20 @@ class Public::PostsController < ApplicationController
   end
   
   def create
-    @post = Post.new(post_params) 
-    @post.user_id = current_user.id
+    @post = current_user.posts.new(post_params)
     @post.save!
-    redirect_to action: 'index' 
+    redirect_to public_posts_path
   end
   
   def index
     @posts = Post.all
+    
+  end
+  
+  def show
+    @post = Post.find(params[:id])
+    @comments = @post.comments  #投稿詳細に関連付けてあるコメントを全取得
+    @comment = Comment.new
   end
   
   private
