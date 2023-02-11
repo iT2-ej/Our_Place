@@ -11,7 +11,16 @@ class Public::PostsController < ApplicationController
   
   def index
     @posts = Post.all
-    
+    #@favorite =
+    # if params[:search] == nil || ''
+    if params[:search] == nil || params[:search] == ''
+      @posts= Post.all 
+    # elsif params[:search] == ''
+      # @posts= Post.all
+    else
+      #部分検索
+      @posts = Post.where("body LIKE ? ",'%' + params[:search] + '%')
+    end
   end
   
   def show
