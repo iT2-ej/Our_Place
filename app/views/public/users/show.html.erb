@@ -30,7 +30,19 @@
 </table>
  
 <h2>いいね一覧</h2>
-
+  <% @user.favorites.each do |f| %>
+  <section>
+  <%= f.post.title %>
+ 
+  <p><%= f.post.body %></p>
+  
+  <div>
+     <% if f.post.image.attached? %>
+     <%= image_tag f.post.image, size: "100x100" %>
+     <% end %>
+  </div>
+   </section>
+  <% end %>
 <h2>登録情報
  <%= link_to "編集する", edit_public_user_path,class: "btn btn-success ml2" %>
 </h2>

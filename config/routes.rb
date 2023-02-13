@@ -26,7 +26,8 @@ Rails.application.routes.draw do
     resources :users, only: [:new, :show, :edit, :update]
     resources :posts, only: [:new, :show, :index, :create]
     resources :comments, only: [:show, :create, :destroy]
-    resources :favorites, only: [:create, :destroy]
+    resources :favorites, only: [:destroy]
+    post 'favorites/:id' => 'favorites#create',as: 'favorites'
   end
   
 end
