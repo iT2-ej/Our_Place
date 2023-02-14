@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
+  
+  namespace :admin do
+    root to: "homes#top"
+    resources :users
+  end
   devise_for :admin, controllers: {
   sessions: "admin/sessions"
   }
   
   get 'homes/top'
   
-  #root to: 'homes#index'
   root to: 'homes#top'
   post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
 

@@ -1,0 +1,47 @@
+<h1>会員情報編集</h1>
+ <%= form_with model: @user,url: admin_user_path(@user.id) do |f| %>
+ <form>
+   <div class="row">
+    <div class="col">
+      <%= f.label :user_name, "ユーザーネーム" %></br>
+      <%= f.text_field :user_name,class:"form-control w-50",autofocus: true,autocomplete: "ユーザーネーム" %>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col">
+      <%= f.label :last_name, "姓" %><br/>
+      <%= f.text_field :last_name,class:"form-control w-50",autofocus: true,autocomplete: "姓"%>
+    </div>
+    <div class="col">
+      <%= f.label :first_name, "名" %><br/>
+      <%= f.text_field :first_name,class:"form-control w-50", autofocus: true,autocomplete: "名" %>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col">
+      <%= f.label :last_name_kana, "フリガナ姓" %><br />
+      <%= f.text_field :last_name_kana,class:"form-control w-40", autofocus: true, autocomplete: "フリガナ姓" %>
+    </div>
+    <div class="col">
+      <%= f.label :first_name_kana, "フリガナ名" %><br />
+      <%= f.text_field :first_name_kana,class:"form-control w-40", autofocus: true, autocomplete: "フリガナ名" %>
+    </div>
+   
+   <div class="row">
+     <div class="field">
+       <%= f.label :email, "メールアドレス" %><br />
+       <%= f.email_field :email, autoforcus: true, autocomplete: "メールアドレス" %>
+     </div>
+   </div>
+   <div class="row">
+     <div class="field">
+      <%= f.radio_button :is_deleted, false %>
+      <%= f.label :is_deleted_false, "有効" %>
+      <%= f.radio_button :is_deleted, true %>
+      <%= f.label :is_deleted_true, "退会" %>
+     </div>
+   </div>
+
+   <%= f.submit "変更を保存する",class:"btn btn-success" %>
+  <% end %>
+</form>
