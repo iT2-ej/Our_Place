@@ -5,23 +5,29 @@ class Public::PostsController < ApplicationController
   
   def create
     @post = current_user.posts.new(post_params)
-    @post.save!
-    redirect_to public_posts_path
+    tag_list = params[:post][:tag_name].split(nil)
+    @post.image.attach(params[:post][:image])
+    @post.user_id = current_user.id
+    if @post.save
+       @post.save_posts(tag_list)
+      redirect_to public_posts_path
+    else
+      flash.now[:alert] = '投稿に失敗しました'
+      render 'new'
+    end
   end
   
   def index
-    #@posts = Post.all
     @posts = Post.page(params[:page])
-    #@favorite =
-    # if params[:search] == nil || ''
     if params[:search] == nil || params[:search] == ''
-      @posts= Post.all 
-    # elsif params[:search] == ''
-      # @posts= Post.all
+      @posts= Post.page(params[:page]) 
+    elsif params[:tag_id].present?
+      @tag = Tag.find(params[:tag_id])
     else
       #部分検索
-      @posts = Post.where("body LIKE ? ",'%' + params[:search] + '%')
+      @posts = Post.where("body LIKE ? ",'%' + params[:search] + '%').page(params[:page])
     end
+      @tag_lists = Tag.all
   end
   
   def show
