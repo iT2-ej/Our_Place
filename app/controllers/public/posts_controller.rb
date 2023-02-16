@@ -19,6 +19,7 @@ class Public::PostsController < ApplicationController
   
   def index
     @posts = Post.page(params[:page])
+    @tag_list = Tag.all
     if params[:search] == nil || params[:search] == ''
       @posts= Post.page(params[:page]) 
     elsif params[:tag_id].present?

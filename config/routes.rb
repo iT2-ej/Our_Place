@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:show, :create, :destroy]
     resources :favorites, only: [:destroy]
     post 'favorites/:id' => 'favorites#create',as: 'favorites'
+    resources :tags, only: [:show]
   end
   
 end

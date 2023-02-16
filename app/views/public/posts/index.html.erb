@@ -3,6 +3,9 @@
  <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
   <%= text_field_tag :search %>
   <%= submit_tag '検索する' %>
+  <% @tag_list.each do |tag| %>
+　 <%= link_to "##{tag.tag_name}", public_tag_path(tag) %>
+　<% end %>
  <% end %>
 <table>
 　<% @posts.each do |post| %>
@@ -17,6 +20,11 @@
 　    </td> 
 　    <td>
 　     <%= post.body %>
+　    </td>
+　    <td>
+　     <% post.tags.each do |tag| %>
+　      <%= link_to "##{tag.tag_name}", public_tag_path(tag) %>
+　     <% end %>
 　    </td>
 　    <td>
 　        <% if post.comments.count != 0 %>

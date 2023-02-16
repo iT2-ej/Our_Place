@@ -1,0 +1,23 @@
+<h1>タグの絞り込み</h1>
+  <table>
+　<% @posts.each do |post| %>
+　  <tr>
+　    <td>
+　     <% if post.image.attached? %>
+       <%= image_tag post.image, size: "100x100" %>
+       <% end %>
+　    </td>
+　    <td>
+　     <%= post.title %>
+　    </td> 
+　    <td>
+　     <%= post.body %>
+　    </td>
+　    <td>
+　     <% post.tags.each do |tag| %>
+　      <%= link_to "##{tag.tag_name}", public_tag_path(tag) %>
+　     <% end %>
+　    </td>
+　 </tr>
+　<% end %>
+ </table>
