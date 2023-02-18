@@ -1,19 +1,19 @@
-<%= form_with model: @comment, url: public_posts_path, local: true do |form| %>
+<%= form_with model: @comment, url: public_comments_path, method: :post,local: true do |form| %>
 
  <tr>
    <td>
-    <%= form.label :title %>
-    <%= form.text_field :title %> 
+    <%#= form.label :title %>
+    <%#= form.text_field :title %> 
    </td>
    <td>
-    <%= form.label :body %>
+    <%= form.label :body,"投稿本文" %>
     <%= form.text_area :body %> 
    </td>
    <td>
     <%= form.file_field :image, accept: "image/*" %>
    </td>
    <td>
-    <%= form.label :tag %>
+    <%= form.label :tag, "タグ" %>
     <%= form.text_field :tag_name %> 
    </td>
    <td>

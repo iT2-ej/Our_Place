@@ -4,9 +4,9 @@ class Public::UsersController < ApplicationController
   end
   
   def show
-    @user = User.find(params[:id])
+    @user = current_user
     @profile_image = @user.profile_image
-    @posts = Post.all
+    @posts = Post.where(user_id: current_user.id)
   end
   
   def unsubscribe
