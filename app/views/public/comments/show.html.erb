@@ -1,0 +1,25 @@
+<%= form_with model: @comment, url: public_comments_path(@comment.id), method: :post,local: true do |form| %>
+
+<%= @post_id %>
+ <tr>
+   <td>
+    <%= form.hidden_field :post_id, :value => @post_id %>
+    <%#= form.label :title %>
+    <%#= form.text_field :title %> 
+   </td>
+   <td>
+    <%= form.label :comment_content,"投稿本文" %>
+    <%= form.text_area :comment_content %> 
+   </td>
+   <td>
+    <%= form.file_field :image, accept: "image/*" %>
+   </td>
+   <td>
+    <%= form.label :tag, "タグ" %>
+    <%= form.text_field :tag_name %> 
+   </td>
+   <td>
+    <%= form.submit "投稿" %> 
+   </td>
+ </tr>
+<% end %>

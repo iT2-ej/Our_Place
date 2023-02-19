@@ -26,7 +26,10 @@
      <% @post.comments.each do |co| %>
 　       <%= co.comment_content %>
 　       <% if co.user_id == current_user.id %>
+　        <%= link_to "編集", edit_public_comment_path(co) %>
   　       <%= form_with model: co, url: public_comment_path, method: :delete,  local: true do |form| %>  
+  　       
+  　       
   　        <%= form.submit "削除" %>
   　       <% end %>
          <% end %>
