@@ -5,15 +5,6 @@ class Public::CommentsController < ApplicationController
 
     @comment = Comment.new
   end
-
-  #def create
-  #  @comment = current_user.comments.new(comment_params)
-  #  if @comment.save
-  #    redirect_to public_posts_path
-  #  else
-  #    render "public/posts/index"
-  #  end
-   #  end
   
   def edit 
     @comment = Comment.find(params[:id])

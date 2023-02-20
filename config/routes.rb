@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "homes#top"
     resources :users
-    resources :posts, only: [:destroy]
+    resources :posts, only: [:index, :destroy]
+    resources :comments, only: [:index, :destroy]
   end
   devise_for :admin, controllers: {
   sessions: "admin/sessions"

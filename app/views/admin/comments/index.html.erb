@@ -1,0 +1,15 @@
+<h1>コメント一覧</h1>
+  <%= @comments.pluck(:user_id) %>
+ <% @comments.each do |comment| %>
+  コメント本文: <%= comment.comment_content %>
+  <% if comment.post.image.attached? %>
+    投稿画像: <%= image_tag comment.post.image, size: "100x100" %>
+  <% end %>
+  タグ: 
+  <% comment.post.tags.each do |tag| %>
+   <%= tag.tag_name %>
+  <% end %>
+  コメント画像: <% comment.image %>
+  <br>
+
+ <% end %>

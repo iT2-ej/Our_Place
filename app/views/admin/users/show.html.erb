@@ -50,6 +50,10 @@
      <%= link_to "削除", admin_post_path(post), method: :delete %>
     <% end %>
    </td>
+   <td>
+     <%= link_to "コメント一覧", admin_comments_path(id: @user.id) %>
+   </td>
+
   </tr>
  </table>
 </div>
