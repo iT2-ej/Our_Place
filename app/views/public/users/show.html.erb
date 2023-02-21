@@ -1,17 +1,17 @@
-<h1><%= @user.user_name %></h1>
-  <%= image_tag @user.get_profile_image(200,200) %>
+<h1 class="text-center"><%= @user.user_name %></h1>
+  <p class="text-center"><%= image_tag @user.get_profile_image(200,200) %></p>
 
-<h2>自己紹介</h2>
- <%= @user.introduction %>
+<h2 class="text-center">自己紹介</h2>
+ <p class="text-center"><%= @user.introduction %></p>
 
-<h2>投稿一覧</h2>
- <table>
+<h2 class="text-center">投稿一覧</h2>
+ <table class="text-center">
 　<% @posts.each do |post| %>
 　  <tr>
 　    <td>
-　     <% if post.image.attached? %>
-       <%= image_tag post.image, size: "100x100" %>
-       <% end %>
+  　      <% if post.image.attached? %>
+         <%= image_tag post.image, size: "100x100" %>
+         <% end %>
 　    </td>
 　    <td>
 　     <%= post.title %>
@@ -29,20 +29,20 @@
   <% end %>
 </table>
  
-<h2>いいね一覧</h2>
+<h2 class="text-center">いいね一覧</h2>
   <% @user.favorites.each do |f| %>
   <section>
-  <%= f.post.title %>
- 
-  <p><%= f.post.body %></p>
-  
-  <div>
+    
+  <p class="text-center"><%= f.post.user.user_name %></p>
+  <p class="text-center"><%= f.post.title %></p>
+  <p class="text-center"><%= f.post.body %></p>
+  <div class="text-center">
      <% if f.post.image.attached? %>
      <%= image_tag f.post.image, size: "100x100" %>
      <% end %>
   </div>
    </section>
   <% end %>
-<h2>登録情報
- <%= link_to "編集する", edit_public_user_path,class: "btn btn-success ml2" %>
-</h2>
+<p class="text-center">
+ <%= link_to "編集画面へ", edit_public_user_path,class: "btn btn-success ml2" %>
+</p>
