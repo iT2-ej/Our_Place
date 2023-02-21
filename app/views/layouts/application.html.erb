@@ -11,49 +11,66 @@
   </head>
 
   <body>
-    <header>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm">
-             <ul class="navbar-nav">
-              <% if user_signed_in? %>
-                <li>
-                  <%= link_to 'マイページ', public_user_path(current_user.id) %>
-                </li>
-                <li>
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-                </li>
-                <li>
-                  <%= link_to 'トップページ', homes_top_path %>
-                </li>
-                <li>
-                  <%= link_to '新規投稿', new_public_post_path %>
-                </li>
-                <li>
-                  <%= link_to '投稿一覧', public_posts_path %>
-                </li>
-              <% else %>
-                <li>
-                  <%= link_to "新規登録", new_user_registration_path %>
-                </li>
-                <li>
-                  <%= link_to "ログイン", new_user_session_path %>
-                </li>
-                <li>
-                  <%= link_to "ゲストログイン", homes_guest_sign_in_path, method: :post %>
-                </li>
-              <% end %>
-              
-              <%#<h3>投稿を検索</h3>%>
-               <%= form_tag({controller:"public/posts",action:"index"}, method: :get) do %>
-               <%= text_field_tag :search, nil, placeholder: "投稿を検索" %>
-               <%= submit_tag '検索する' %>
-               <% end %>
-       </ul>
-            </div>
-          </div>
-    </div>
-  </header>
-    <%= yield %>
+    <header class='container'>
+      <div class="row">
+        <div class="col-sm">
+          <ul class="navbar-nav">
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to 'マイページ', public_user_path(current_user.id) %>
+              </li>
+              <li>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              </li>
+              <li>
+                <%= link_to 'トップページ', homes_top_path %>
+              </li>
+              <li>
+                <%= link_to '新規投稿', new_public_post_path %>
+              </li>
+              <li>
+                <%= link_to '投稿一覧', public_posts_path %>
+              </li>
+              <li>
+                <%= form_tag({controller:"public/posts",action:"index"}, method: :get) do %>
+                  <%= text_field_tag :search, nil, placeholder: "投稿を検索" %>
+                  <%= submit_tag '検索する' %>
+                <% end %>
+              </li>
+            <%# ここからadmin %>
+            <% elsif admin_signed_in? %>
+              <li>
+                <%= link_to "ログアウト", destroy_admin_session_path,method: :delete %><br>
+              </li>
+              <li>
+                <%= link_to "会員一覧", admin_users_path %>
+              </li>
+              <li>
+                <%= link_to "新規登録", new_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to "ユーザーログイン", new_user_session_path %>
+              </li>
+              <li>
+                <%= link_to "ゲストログイン", homes_guest_sign_in_path, method: :post %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to "新規登録", new_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to "ログイン", new_user_session_path %>
+              </li>
+              <li>
+                <%= link_to "ゲストログイン", homes_guest_sign_in_path, method: :post %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main class='container'>
+      <%= yield %>
+    </main>
   </body>
 </html>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :users
     resources :posts, only: [:index, :destroy]
     resources :comments, only: [:index, :destroy]
+    resources :favorites, only: [:index, :destroy]
   end
   devise_for :admin, controllers: {
   sessions: "admin/sessions"

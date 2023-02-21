@@ -1,0 +1,14 @@
+<h1 class="text-center">いいね一覧</h1>
+  <%= @favorites.pluck(:user_id) %>
+ <% @favorites.each do |favorite| %>
+  <%= favorite.post.title %>
+  <% if favorite.post.image.attached? %>
+    投稿画像: <%= image_tag favorite.post.image, size: "100x100" %>
+  <% end %>
+  タグ: 
+  <% favorite.post.tags.each do |tag| %>
+   <%= tag.tag_name %>
+  <% end %>
+  <%= link_to "削除",admin_favorite_path(favorite),method: :delete, class:"btn btn-secondary" %>
+  <br>
+ <% end %>

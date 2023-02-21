@@ -1,4 +1,4 @@
-<h1>コメント一覧</h1>
+<h1 class="text-center">コメント一覧</h1>
   <%= @comments.pluck(:user_id) %>
  <% @comments.each do |comment| %>
   コメント本文: <%= comment.comment_content %>
@@ -10,6 +10,6 @@
    <%= tag.tag_name %>
   <% end %>
   コメント画像: <% comment.image %>
+  <%= link_to "削除",admin_comment_path(comment),method: :delete, class:"btn btn-secondary" %>
   <br>
-
  <% end %>

@@ -51,7 +51,8 @@
     <% end %>
    </td>
    <td>
-     <%= link_to "コメント一覧", admin_comments_path(id: @user.id) %>
+     <%= link_to "コメント一覧", admin_comments_path(id: @user.id), class:"btn btn-info" %>
+     <%= link_to "いいね一覧", admin_favorites_path(id: @user.id), class:"btn btn-info" %>
    </td>
 
   </tr>

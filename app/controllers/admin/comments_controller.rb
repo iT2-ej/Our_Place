@@ -9,6 +9,6 @@ class Admin::CommentsController < ApplicationController
     @comment = Comment.find_by(params[:id])
     @comment.destroy
        flash[:notice] = 'コメントを削除しました'
-    redirect_to admin_comment_path
+    redirect_to admin_comments_path(id: @comment.user.id)
   end
 end
