@@ -1,15 +1,26 @@
 <h1 class="text-center">コメント一覧</h1>
-  <%= @comments.pluck(:user_id) %>
- <% @comments.each do |comment| %>
-  コメント本文: <%= comment.comment_content %>
-  <% if comment.post.image.attached? %>
-    投稿画像: <%= image_tag comment.post.image, size: "100x100" %>
-  <% end %>
-  タグ: 
-  <% comment.post.tags.each do |tag| %>
-   <%= tag.tag_name %>
-  <% end %>
-  コメント画像: <% comment.image %>
-  <%= link_to "削除",admin_comment_path(comment),method: :delete, class:"btn btn-secondary" %>
-  <br>
- <% end %>
+  <table class="table table-bordered">
+    <% @comments.each do |comment| %>
+    <thead>
+      <tr>
+        <th class="text-center">投稿ID</th>
+        <th class="text-center">本文</th>
+        <th class="text-center">投稿画像</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="text-center"><%= comment.post_id %></td>
+        <td class="text-center"><%= comment.comment_content %></td>
+        <td class="text-center">
+          <% if comment.post.image.attached? %>
+            <%= image_tag comment.post.image, size: "100x100" %>
+          <% end %>
+        </td>
+        <td class="text-center"><%= link_to "削除",admin_comment_path(comment),method: :delete, class:"btn btn-secondary" %></td>
+      </tr> 
+    </tbody>
+    <% end %>
+  </table>
+  

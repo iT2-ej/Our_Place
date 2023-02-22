@@ -1,14 +1,32 @@
 <h1 class="text-center">いいね一覧</h1>
-  <%= @favorites.pluck(:user_id) %>
- <% @favorites.each do |favorite| %>
-  <%= favorite.post.title %>
-  <% if favorite.post.image.attached? %>
-    投稿画像: <%= image_tag favorite.post.image, size: "100x100" %>
-  <% end %>
-  タグ: 
-  <% favorite.post.tags.each do |tag| %>
-   <%= tag.tag_name %>
-  <% end %>
-  <%= link_to "削除",admin_favorite_path(favorite),method: :delete, class:"btn btn-secondary" %>
-  <br>
- <% end %>
+  <table class="table table-bordered">
+    <% @favorites.each do |favorite| %>
+    <thead>
+      <tr>
+        <th class="text-center">投稿ID</th>
+        <th class="text-center">投稿タイトル</th>
+        <th class="text-center">投稿本文</th>
+        <th class="text-center">投稿画像</th>
+        <th class="text-center">投稿タグ</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <td class="text-center"><%= favorite.post_id %></td>
+      <td class="text-center"><%= favorite.post.title %></td>
+      <td class="text-center"><%= favorite.post.body %></td>
+      <td class="text-center">
+        <% if favorite.post.image.attached? %>
+          <%= image_tag favorite.post.image, size: "100x100" %>
+        <% end %>
+      </td>
+      <td class="text-center">
+        <% favorite.post.tags.each do |tag| %>
+          <%= tag.tag_name %>
+        <% end %>
+      </td>
+      <td class="text-center"><%= link_to "削除",admin_favorite_path(favorite),method: :delete, class:"btn btn-secondary" %></td>
+    </tbody>
+    <% end %>
+  </table>
+  
