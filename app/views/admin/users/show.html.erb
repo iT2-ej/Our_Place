@@ -54,7 +54,7 @@
       <th></th>
     </thead>
     <tbody>
-      <td><%= post.post_id</td>
+      <td><%= post.id %></td>
       <td><%= post.title %></td>
       <td><%= post.body %></td>
       <td>
@@ -71,9 +71,11 @@
     </tbody>
     <% end %>
   </table>
-<div class="text-center">
-  <%= link_to "コメント一覧", admin_comments_path(id: @user.id), class:"btn btn-info" %>
-</div>
-<div class="text-center">
-  <%= link_to "いいね一覧", admin_favorites_path(id: @user.id), class:"btn btn-info" %>
-</div>
+  <div class="row">
+    <div class="col text-center">
+      <%= link_to "コメント一覧", admin_comments_path(id: @user.id), class:"btn btn-info" %>
+    </div>
+    <div class="col text-center">
+      <%= link_to "いいね一覧", admin_favorites_path(id: @user.id), class:"btn btn-info" %>
+    </div>
+  </div>
