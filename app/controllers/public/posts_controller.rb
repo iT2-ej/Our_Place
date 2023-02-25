@@ -37,6 +37,12 @@ class Public::PostsController < ApplicationController
     @comment = Comment.new
   end
   
+  def destroy
+    @post = Post.find_by(params[:id])
+    @post.destroy
+    redirect_to public_user_path
+  end
+  
   private
     def post_params 
       params.require(:post).permit(:title, :body, :image) 

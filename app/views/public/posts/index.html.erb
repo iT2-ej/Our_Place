@@ -1,59 +1,59 @@
 <h1>みんなの投稿</h1>
 <h3>投稿を検索</h3>
- <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
-  <%= text_field_tag :search %>
+  <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
+  <%= text_field_tag :search, nil, placeholder: "キーワード・タグを検索" %>
   <%= submit_tag '検索する' %>
   <% @tag_list.each do |tag| %>
-　 <%= link_to "##{tag.tag_name}", public_tag_path(tag) %>
-　<% end %>
- <% end %>
-<table>
-　<% @posts.each do |post| %>
-　  <tr>
-　    <td>
-　     <%= post.user.user_name %>
-　    </td>
-　    <td>
-　     <% if post.image.attached? %>
-       <%= image_tag post.image, size: "100x100" %>
-       <% end %>
-　    </td>
-　    <td>
-　     <%= post.title %>
-　    </td> 
-　    <td>
-　     <%= post.body %>
-　    </td>
-　    <td>
-　     <% post.tags.each do |tag| %>
-　      <%= link_to "##{tag.tag_name}", public_tag_path(tag) %>
-　     <% end %>
-　    </td>
-　    <td>
-　        <% if post.comments.count != 0 %>
-　        <%= link_to "コメント数",public_post_path(post) %>
-　        <%= post.comments.count %>
-　        <% end %>
-　    </td>
-　    <td>
-　     <% if post.favorited?(current_user) %>
-        <%# 一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ %>
+    <%= link_to "##{tag.tag_name}", public_tag_path(tag) %>
+    <% end %>
+  <% end %>
+<table class="table table-hover">
+  <thead>
+    <th>投稿者名</th>
+    <th>投稿タイトル</th>
+    <th>投稿本文</th>
+    <th>投稿画像</th>
+    <th>タグ</th>
+    <th>コメント数</th>
+    <th>いいね</th>
+    <th></th>
+  </thead>
+  <% @posts.each do |post| %>
+  <tbody>
+    <td><%= post.user.user_name %></td>
+    <td><%= post.title %></td>
+    <td><%= post.body %></td>
+    <td>
+      <% if post.image.attached? %>
+      <%= image_tag post.image, size: "100x100" %>
+      <% end %>
+    </td>
+    <td>
+      <% post.tags.each do |tag| %>
+      <%= link_to "##{tag.tag_name}", public_tag_path(tag) %>
+      <% end %>
+    </td>
+    <td>
+      <% if post.comments.count != 0 %>
+        <%= link_to "コメント数",public_post_path(post) %>
+        <%= post.comments.count %>
+      <% end %>
+    </td>
+    <td>
+      <% if post.favorited?(current_user) %>
         <%= link_to public_favorite_path(post.id), method: :delete do %>
         <%= post.favorites.count %>
         <span style="color:red;">❤︎</span>
-       <% end %>
-       <% else %>
-       <%# 一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ %>
-       <%= link_to public_favorites_path(post.id), method: :post do %>
+      <% end %>
+      <% else %>
+        <%= link_to public_favorite_create_path(post.id), method: :post do %>
         <%= post.favorites.count %>
-       <span>❤︎</span>
-       <% end %>
-       <% end %>
-　    </td>
-　    <td>
-　     <%= link_to "コメント", public_comment_path(post) %>
-　    </td>
-　  </tr>
-  <% end %>
-  <%= paginate @posts %>
+        <span>❤︎</span>
+        <% end %>
+      <% end %>
+    </td>
+    <td><%= link_to "コメント", public_comment_path(post) %></td>
+    <% end %>
+    <%= paginate @posts %>
+  </tbody>
 </table>

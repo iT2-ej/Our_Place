@@ -1,17 +1,15 @@
+<h1>コメント編集</h1>
 <%= form_with model: @comment, url: public_comment_path(@comment.id), method: :put,local: true do |form| %>
-
- <tr>
-   <td>
-    <%#= form.label :title %>
-    <%#= form.text_field :title %>
-    <%= form.hidden_field :post_id, :value => @post_id %>
-   </td>
-   <td>
-    <%= form.label :body,"投稿本文" %>
-    <%= form.text_area :body, :value => @comment.comment_content %> 
-   </td>
-   <td>
-    <%= form.submit "投稿" %> 
-   </td>
- </tr>
+  <div class="row align-items-center">
+    <div class="col">
+      <%= form.hidden_field :post_id, :value => @post_id %>
+    </div>
+    <div class="col">
+      <%= form.label :body,"投稿本文" %>
+      <%= form.text_area :body, :value => @comment.comment_content %> 
+    </div>
+    <div class="col">
+      <%= form.submit "投稿" %>  
+    </div>
+  </div>
 <% end %>

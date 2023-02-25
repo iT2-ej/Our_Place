@@ -1,23 +1,23 @@
-<%= form_with model: @comment, url: public_posts_path, local: true do |form| %>
-
- <tr>
-   <td>
-    <%= form.label :title %>
-    <%= form.text_field :title %> 
-   </td>
-   <td>
-    <%= form.label :body %>
-    <%= form.text_area :body %> 
-   </td>
-   <td>
-    <%= form.file_field :image, accept: "image/*" %>
-   </td>
-   <td>
-    <%= form.label :tag %>
-    <%= form.text_field :tag_name %> 
-   </td>
-   <td>
-    <%= form.submit "投稿" %> 
-   </td>
- </tr>
-<% end %>
+<h1 class="text-center">新規投稿</h1>
+  <%= form_with model: @comment, url: public_posts_path, local: true do |form| %>
+  <div class="container">
+    <div class="text-center">
+      <%= form.label :title,"タイトル", {class:"d-block"} %>
+      <%= form.text_field :title %> 
+    </div>
+    <div class="m-3 text-center">
+      <%= form.label :body,"本文", {class:"d-block"} %>
+      <%= form.text_area :body, size: "40x5" %> 
+    </div>
+    <div class="m-3 text-center">
+      <%= form.file_field :image, accept: "image/*" %>
+    </div>
+    <div class="m-3 text-center">
+      <%= form.label :tag,"タグ", {class:"d-block"} %>
+      <%= form.text_field :tag_name %> 
+    </div>
+    <div class="m-3 text-center">
+      <%= form.submit "投稿" %> 
+    </div>
+  </div>
+  <% end %>

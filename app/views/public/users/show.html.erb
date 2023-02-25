@@ -1,48 +1,62 @@
-<h1 class="text-center"><%= @user.user_name %></h1>
-  <p class="text-center"><%= image_tag @user.get_profile_image(200,200) %></p>
-
-<h2 class="text-center">自己紹介</h2>
- <p class="text-center"><%= @user.introduction %></p>
-
-<h2 class="text-center">投稿一覧</h2>
- <table class="text-center">
-　<% @posts.each do |post| %>
-　  <tr>
-　    <td>
-  　      <% if post.image.attached? %>
-         <%= image_tag post.image, size: "100x100" %>
-         <% end %>
-　    </td>
-　    <td>
-　     <%= post.title %>
-　    </td> 
-　    <td>
-　     <%= post.body %>
-　    </td>
-　    <td>
-　        <% if post.comments.count != 0 %>
-　        <%= link_to "返信数",public_post_path(post) %>
-　        <%= post.comments.count %>
-　        <% end %>
-　    </td>
-　  </tr>
-  <% end %>
-</table>
- 
-<h2 class="text-center">いいね一覧</h2>
-  <% @user.favorites.each do |f| %>
-  <section>
-    
-  <p class="text-center"><%= f.post.user.user_name %></p>
-  <p class="text-center"><%= f.post.title %></p>
-  <p class="text-center"><%= f.post.body %></p>
-  <div class="text-center">
-     <% if f.post.image.attached? %>
-     <%= image_tag f.post.image, size: "100x100" %>
-     <% end %>
+<h1>マイページ</h1>
+  <div class = col-md-7>
+    <table class="table table-borderless">
+      <tr>
+        <td>ユーザーネーム</td>
+        <td><%= @user.user_name %></td>
+      </tr>
+      <tr>
+        <td>プロフィール画像</td>
+        <td><%= image_tag @user.get_profile_image(200,200) %></td>
+      </tr>
+      <tr>
+        <td>自己紹介</td>
+        <td><%= @user.introduction %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= link_to "編集画面へ", edit_public_user_path,class: "btn btn-success ml2" %></td>
+      </tr>
+    </table>
   </div>
-   </section>
-  <% end %>
-<p class="text-center">
- <%= link_to "編集画面へ", edit_public_user_path,class: "btn btn-success ml2" %>
-</p>
+<h2>投稿一覧</h2>
+  <table class="table table-bordered">
+    <% @posts.each do |post| %>
+    <thead>
+      <th>投稿タイトル</th>
+      <th>投稿本文</th>
+      <th>投稿画像</th>
+      <th>投稿タグ</th>
+      <th>返信数</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <td><%= post.title %></td>
+      <td><%= post.body %></td>
+      <td>
+        <% if post.image.attached? %>
+        <%= image_tag post.image, size: "100x100" %>
+        <% end %>
+      </td>
+      <td>
+        <% post.tags.each do |tag| %>
+          <%= link_to "##{tag.tag_name}", public_tag_path(tag) %>
+        <% end %>
+      </td>
+      <td>
+        <% if post.comments.count != 0 %>
+        <%= link_to "返信数",public_post_path(post) %>
+        <%= post.comments.count %>
+        <% end %>
+      </td>
+      <td><%= link_to "削除", public_post_path(post), method: :delete, class:"btn btn-secondary" %></td>
+    </tbody>
+    <% end %>
+  </table>
+  <div class="row">
+    <div class="col text-center">
+      <%= link_to "コメント一覧", public_comments_path(id: @user.id), class:"btn btn-info" %>
+    </div>
+    <div class="col text-center">
+      <%= link_to "いいね一覧", public_favorites_path(id: @user.id), class:"btn btn-info" %>
+    </div>

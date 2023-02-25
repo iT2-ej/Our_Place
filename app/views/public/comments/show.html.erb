@@ -1,21 +1,18 @@
+<h1>コメント投稿</h1>
 <%= form_with model: @comment, url: public_comments_path(@comment.id), method: :post,local: true do |form| %>
-
-<%#= @post_id %>
 <div class="container">
-  <div class="row">
-    <div class="col align-self-center">
-      <%= form.hidden_field :post_id, :value => @post_id %>
-    </div>
-    <div class="col align-self-center">
-      <%= form.label :comment_content,"投稿本文" %>
-      <%= form.text_area :comment_content %>
-    </div>
-    <div class="col algn-self-center">
-      <%= form.file_field :image, accept: "image/*" %>
-    </div>
-    <div class="col align-self-center">
-      <%= form.submit "投稿" %> 
-    </div>
+  <div>
+    <%= form.hidden_field :post_id, :value => @post_id %>
+  </div>
+  <div>
+    <%= form.label :comment_content,"本文", {class:"d-block"} %>
+    <%= form.text_area :comment_content, size: "40x5" %>
+  </div>
+  <div class="m-3">
+    <%= form.file_field :image, accept: "image/*" %>
+  </div>
+  <div class="m-3">
+    <%= form.submit "投稿" %> 
   </div>
 </div>
 <% end %>

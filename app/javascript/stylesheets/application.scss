@@ -13,3 +13,11 @@
 }
  @import '~bootstrap/scss/bootstrap';
  @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+ 
+ .header-text{
+   margin-right: 10px;
+ }
+ 
+.text-header{
+  justify-content: flex-end;
+}

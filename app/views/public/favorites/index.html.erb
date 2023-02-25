@@ -1,0 +1,35 @@
+<%#ユーザー側のいいね一覧%>
+<h1 class="text-center">いいね一覧</h1>
+  <table class="table table-bordered">
+    <% @favorites.each do |favorite| %>
+    <thead>
+      <tr>
+        <th class="text-center">投稿ID</th>
+        <th class="text-center">投稿タイトル</th>
+        <th class="text-center">投稿本文</th>
+        <th class="text-center">投稿画像</th>
+        <th class="text-center">投稿タグ</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <td class="text-center"><%= favorite.post_id %></td>
+      <td class="text-center"><%= favorite.post.title %></td>
+      <td class="text-center"><%= favorite.post.body %></td>
+      <td class="text-center">
+        <% if favorite.post.image.attached? %>
+          <%= image_tag favorite.post.image, size: "100x100" %>
+        <% end %>
+      </td>
+      <td class="text-center">
+        <% favorite.post.tags.each do |tag| %>
+          <%= tag.tag_name %>
+        <% end %>
+      </td>
+      <td class="text-center"><%= link_to "削除",public_favorite_path(favorite),method: :delete, class:"btn btn-secondary" %></td>
+    </tbody>
+    <% end %>
+  </table>
+  <div class="text-center">
+    <%= link_to "戻る",:back, class:"btn btn-primary" %>
+  </div>
