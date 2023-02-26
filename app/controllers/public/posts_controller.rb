@@ -1,4 +1,7 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:destroy]
+  
   def new
     @post = Post.new 
   end
@@ -40,10 +43,15 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to public_user_path
+    redirect_to public_user_path(@post.user)
   end
   
   private
+    def correct_user
+      @post = current_user.posts.find_by(id: params[:id])
+      redirect_to root_path unless @post
+    end
+  
     def post_params 
       params.require(:post).permit(:title, :body, :image) 
     end

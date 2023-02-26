@@ -15,7 +15,7 @@
       </tr>
       <tr>
         <td></td>
-        <td><%= link_to "編集画面へ", edit_public_user_path,class: "btn btn-success ml2" %></td>
+        <td><%= link_to "編集画面へ", edit_public_user_path,class: "btn btn-success ml2" if @user == current_user %></td>
       </tr>
     </table>
   </div>
@@ -28,7 +28,9 @@
       <th>投稿画像</th>
       <th>投稿タグ</th>
       <th>返信数</th>
-      <th></th>
+      <% if post.user == current_user %>
+        <th></th>
+      <% end %>
     </thead>
     <tbody>
       <td><%= post.title %></td>
@@ -49,7 +51,9 @@
         <%= post.comments.count %>
         <% end %>
       </td>
-      <td><%= link_to "削除", public_post_path(post), method: :delete, class:"btn btn-secondary" %></td>
+      <% if post.user == current_user %>
+        <td><%= link_to "削除", public_post_path(post), method: :delete, class:"btn btn-secondary"  %></td>
+      <% end %>
     </tbody>
     <% end %>
   </table>
