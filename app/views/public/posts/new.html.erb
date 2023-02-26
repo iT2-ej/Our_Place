@@ -1,5 +1,5 @@
 <h1 class="text-center">新規投稿</h1>
-  <%= form_with model: @comment, url: public_posts_path, local: true do |form| %>
+  <%= form_with model: @post, url: public_posts_path, local: true do |form| %>
   <div class="container">
     <div class="text-center">
       <%= form.label :title,"タイトル", {class:"d-block"} %>

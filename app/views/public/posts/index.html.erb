@@ -21,7 +21,7 @@
   <% @posts.each do |post| %>
   <tbody>
     <td><%= post.user.user_name %></td>
-    <td><%= post.title %></td>
+    <td><%= link_to post.title, public_post_path(post.id) %></td>
     <td><%= post.body %></td>
     <td>
       <% if post.image.attached? %>

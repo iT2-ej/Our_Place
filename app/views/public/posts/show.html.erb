@@ -1,36 +1,40 @@
 <h1>投稿詳細</h1>
-<table>
-  <tr>
-   <td>
-　   <% if @post.image.attached? %>
-     <%= image_tag @post.image, size: "100x100" %>
-     <% end %>
-　 </td>
+<table class="table table-hover">
+  <thead>
+    <th>投稿者名</th>
+    <th>投稿タイトル</th>
+    <th>投稿本文</th>
+    <th>投稿画像</th>
+    <th>タグ</th>
+  </thead>
+  <tbody>
+    <td><%= @post.user.user_name %></td>
+    <td><%= @post.title %></td>
+    <td><%= @post.body %></td>
     <td>
-      <%= @post.title %>
+      <% if @post.image.attached? %>
+      <%= image_tag @post.image, size: "100x100" %>
+      <% end %>
     </td>
     <td>
-      <%= @post.body %>
+      <% @post.tags.each do |tag| %>
+      <%= link_to "##{tag.tag_name}", public_tag_path(tag) %>
+      <% end %>
     </td>
-  </tr>
-  <tr>
-   <td>
-　      <%= form_with model: [:public, @comment], local: true do |f| %>
-　          <%= f.hidden_field :post_id, value: @post.id %>
-            <%= f.text_area :comment_content, placeholder: "ここにコメントを入力" %>
-            <%= f.submit "決定" %>
-        <% end %>
-　    </td>
-　</tr>
+  </tbody>
 </table>
-     <% @post.comments.each do |co| %>
-　       <%= co.comment_content %>
-　       <% if co.user_id == current_user.id %>
-　        <%= link_to "編集", edit_public_comment_path(co) %>
-  　       <%= form_with model: co, url: public_comment_path, method: :delete,  local: true do |form| %>  
-  　       
-  　       
-  　        <%= form.submit "削除" %>
-  　       <% end %>
-         <% end %>
-　     <% end %>
+
+<h2>コメントを投稿</h2>
+<%= form_with model: [:public, @comment], local: true do |f| %>
+<div class="container">
+  <div>
+    <%= f.hidden_field :post_id, value: @post.id %>
+  </div>
+  <div>
+    <%= f.text_area :comment_content, placeholder: "ここにコメントを入力", size: "40x5" %>
+  </div>
+  <div class="m-3">
+    <%= f.submit "投稿" %>
+  </div>
+</div>
+<% end %>
