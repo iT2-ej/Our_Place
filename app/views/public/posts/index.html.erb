@@ -20,7 +20,7 @@
   </thead>
   <% @posts.each do |post| %>
   <tbody>
-    <td><%= post.user.user_name %></td>
+    <td><%= link_to post.user.user_name, public_user_path(post.user.id) %></td>
     <td><%= link_to post.title, public_post_path(post.id) %></td>
     <td><%= post.body %></td>
     <td>
@@ -39,6 +39,7 @@
         <%= post.comments.count %>
       <% end %>
     </td>
+    <% if current_user.email != 'guest@example.com'  %>
     <td>
       <% if post.favorited?(current_user) %>
         <%= link_to public_favorite_path(post.id), method: :delete do %>
@@ -53,6 +54,7 @@
       <% end %>
     </td>
     <td><%= link_to "コメント", public_comment_path(post) %></td>
+    <% end %>
     <% end %>
     <%= paginate @posts %>
   </tbody>

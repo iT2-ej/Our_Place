@@ -23,7 +23,7 @@
     </td>
   </tbody>
 </table>
-
+ <% if current_user.email != 'guest@example.com'  %>
 <h2>コメントを投稿</h2>
 <%= form_with model: [:public, @comment], local: true do |f| %>
 <div class="container">
@@ -37,4 +37,5 @@
     <%= f.submit "投稿" %>
   </div>
 </div>
+<% end %>
 <% end %>

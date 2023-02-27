@@ -8,6 +8,8 @@
 admin = Admin.find_or_create_by(email: "admin@test.com")
 admin.update!(password: "password")
 
+ 
+
 (1..10).each do |i|
   user = User.find_or_create_by(user_name: "user#{i}", 
                                 email: "user#{i}@test.com",

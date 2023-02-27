@@ -18,20 +18,23 @@
               <ul class="navbar-nav header-text-right">
                 <% if user_signed_in? %>
                   <li class="header-text">
-                    <%= link_to 'マイページ', public_user_path(current_user.id) %>
-                  </li>
-                  <li class="header-text">
                     <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
                   </li>
                   <li class="header-text">
                     <%= link_to 'トップページ', homes_top_path %>
                   </li>
+                  <% if current_user.email != 'guest@example.com'  %>
                   <li class="header-text">
                     <%= link_to '新規投稿', new_public_post_path %>
                   </li>
                   <li class="header-text">
+                    <%= link_to 'マイページ', public_user_path(current_user&.id) %>
+                  </li>
+                  <% end %>
+                  <li class="header-text">
                     <%= link_to '投稿一覧', public_posts_path %>
                   </li>
+                
                 <%# ここからadmin %>
                 <% elsif admin_signed_in? %>
                   <li class="header-text">
@@ -49,12 +52,23 @@
                   <li class="header-text">
                     <%= link_to "ゲストログイン", homes_guest_sign_in_path, method: :post %>
                   </li>
+                <%# ここからゲスト %>
+                <!--<%# elsif !guest_signed_in? %>-->
+                <!--  <li class="header-text">-->
+                <!--    <%#= link_to "新規登録", new_user_registration_path %>-->
+                <!--  </li>-->
+                <!--  <li class="header-text">-->
+                <!--    <%#= link_to "ログイン", new_user_session_path %>-->
+                <!--  </li>-->
+                <!--  <li class="header-text">-->
+                <!--    <%#= link_to "ログアウト", destroy_user_session_path, method: :delete %>-->
+                <!--  </li>-->
                 <% else %>
                   <li class="header-text">
-                    <%= link_to "新規登録", new_user_registration_path %>
+                    <%= link_to "ユーザーログイン", new_user_session_path %>
                   </li>
                   <li class="header-text">
-                    <%= link_to "ログイン", new_user_session_path %>
+                    <%= link_to "新規登録", new_user_registration_path %>
                   </li>
                   <li class="header-text">
                     <%= link_to "ゲストログイン", homes_guest_sign_in_path, method: :post %>
