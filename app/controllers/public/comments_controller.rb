@@ -2,7 +2,6 @@ class Public::CommentsController < ApplicationController
   
   def show
     @post_id = params[:id]
-
     @comment = Comment.new
   end
   

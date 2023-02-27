@@ -35,7 +35,7 @@
     </td>
     <td>
       <% if post.comments.count != 0 %>
-        <%= link_to "コメント数",public_post_path(post) %>
+        <%= link_to "コメント数",public_comment_path(post) %>
         <%= post.comments.count %>
       <% end %>
     </td>
@@ -53,7 +53,7 @@
         <% end %>
       <% end %>
     </td>
-    <td><%= link_to "コメント", public_comment_path(post) %></td>
+    <td><%= link_to "コメント", new_public_comment_path %></td>
     <% end %>
     <% end %>
     <%= paginate @posts %>
