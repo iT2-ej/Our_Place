@@ -1,5 +1,5 @@
 <h1>コメント投稿</h1>
-<%= form_with model: @comment, url: public_comments_path(@comment.id), method: :post,local: true do |form| %>
+<%= form_with model: @comment, url: public_post_comments_path, method: :post,local: true do |form| %>
 <div class="container">
   <div>
     <%= form.hidden_field :post_id, :value => @post_id %>

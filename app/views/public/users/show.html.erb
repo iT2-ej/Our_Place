@@ -59,7 +59,7 @@
   </table>
   <div class="row">
     <div class="col text-center">
-      <%= link_to "コメント一覧", public_comments_path(id: @user.id), class:"btn btn-info" %>
+      <%= link_to "コメント一覧", public_post_comments_path(@posts.id), class:"btn btn-info" %>
     </div>
     <div class="col text-center">
       <%= link_to "いいね一覧", public_favorites_path(id: @user.id), class:"btn btn-info" %>

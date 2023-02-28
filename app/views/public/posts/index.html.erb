@@ -15,7 +15,9 @@
     <th>投稿画像</th>
     <th>タグ</th>
     <th>コメント数</th>
+    <% if current_user.email != 'guest@example.com'  %>
     <th>いいね</th>
+    <% end %>
     <th></th>
   </thead>
   <% @posts.each do |post| %>
@@ -35,7 +37,7 @@
     </td>
     <td>
       <% if post.comments.count != 0 %>
-        <%= link_to "コメント数",public_comment_path(post) %>
+        <%= "コメント数" %>
         <%= post.comments.count %>
       <% end %>
     </td>
@@ -53,7 +55,7 @@
         <% end %>
       <% end %>
     </td>
-    <td><%= link_to "コメント", new_public_comment_path %></td>
+    <td><%= link_to "コメント", new_public_post_comment_path(post.id) %></td>
     <% end %>
     <% end %>
     <%= paginate @posts %>

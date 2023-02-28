@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user, only: [:edit, :update, :withdraw]
+  before_action :correct_user, only: [:edit, :update]
   
   def new
   end
@@ -8,6 +8,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @profile_image = @user.profile_image
+    # byebug
     @posts = @user.posts
   end
   
@@ -16,7 +17,7 @@ class Public::UsersController < ApplicationController
   end
 
   def withdraw
-    @user.update(is_deleted: true)
+    current_user.update(is_deleted: true)
     reset_session
     redirect_to root_path
   end
