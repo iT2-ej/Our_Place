@@ -1,7 +1,7 @@
 <%#ユーザー側%>
 <h1 class="text-center">コメント一覧</h1>
   <table class="table table-bordered">
-    <% current_user.comments.each do |comment| %>
+    <% @user.comments.each do |comment| %>
     <thead>
       <tr>
         <th class="text-center">本文</th>

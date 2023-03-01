@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   namespace :public do
     get '/users/unsubscribe' => 'users#unsubscribe',as: 'unsubscribe'
     patch '/users/withdraw' => 'users#withdraw',as: 'withdraw'
+    get '/users/:id/usercomment'=>"users#usercomment"
     resources :users, only: [:new, :show, :edit, :update]
     resources :posts, only: [:new, :show, :index, :create, :destroy] do
       resources :comments, only: [:new, :show, :create, :destroy, :edit, :update, :index, :usercomment]

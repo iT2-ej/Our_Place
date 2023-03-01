@@ -23,14 +23,14 @@
                   <li class="header-text">
                     <%= link_to 'トップページ', homes_top_path %>
                   </li>
-                  <% if current_user.email != 'guest@example.com'  %>
+                  <%# if current_user.email != 'guest@example.com'  %>
                   <li class="header-text">
                     <%= link_to '新規投稿', new_public_post_path %>
                   </li>
                   <li class="header-text">
                     <%= link_to 'マイページ', public_user_path(current_user&.id) %>
                   </li>
-                  <% end %>
+                  <%# end %>
                   <li class="header-text">
                     <%= link_to '投稿一覧', public_posts_path %>
                   </li>

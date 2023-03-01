@@ -21,17 +21,20 @@ class Public::PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.page(params[:page])
-    @tag_list = Tag.all
+    @posts = Post.order(created_at: :desc).page(params[:page])
+    tag_names = Tag.pluck(:tag_name)
     if params[:search] == nil || params[:search] == ''
-      @posts= Post.page(params[:page]) 
-    elsif params[:tag_id].present?
-      @tag = Tag.find(params[:tag_id])
+      @posts= Post.order(created_at: :desc).page(params[:page]) 
+    elsif tag_names.include?(params[:search])
+      tag_ids = Tag.where(tag_name: params[:search]).pluck(:id)
+      tagmaps = Tagmap.where(tag_id: tag_ids)
+      post_ids = tagmaps.pluck(:post_id)
+      @posts = Post.where(id: post_ids).order(created_at: :desc).page(params[:page])
     else
       #部分検索
-      @posts = Post.where("body LIKE ? ",'%' + params[:search] + '%').page(params[:page])
+      @posts = Post.where("body LIKE ? ",'%' + params[:search] + '%').order(created_at: :desc).page(params[:page])
     end
-      @tag_lists = Tag.all
+    @tag_list = Tag.all
   end
   
   def show

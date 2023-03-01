@@ -41,7 +41,7 @@
         <%= post.comments.count %>
       <% end %>
     </td>
-    <% if current_user.email != 'guest@example.com'  %>
+    <% #if current_user.email != 'guest@example.com'  %>
     <td>
       <% if post.favorited?(current_user) %>
         <%= link_to public_favorite_path(post.id), method: :delete do %>
@@ -57,7 +57,7 @@
     </td>
     <td><%= link_to "コメント", new_public_post_comment_path(post.id) %></td>
     <% end %>
-    <% end %>
+    <% #end %>
     <%= paginate @posts %>
   </tbody>
 </table>

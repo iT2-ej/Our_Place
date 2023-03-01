@@ -33,6 +33,11 @@ class Public::UsersController < ApplicationController
     end
   end
   
+  ##追加分
+  def usercomment
+    @user=User.find(params[:id])
+  end
+  
   private
   
   def correct_user

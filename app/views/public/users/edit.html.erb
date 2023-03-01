@@ -46,9 +46,11 @@
      <%= f.submit "編集内容を保存",class:"btn btn-success" %>
      <% end %>
    </div>
+   <% if current_user.email != 'guest@example.com'  %>
    <div class="col text_center">
      <%= link_to "退会する", public_unsubscribe_path,class:"btn btn-secondary" %>
    </div>
+   <% end %>
    <div class="col text-center">
     <%= link_to "戻る",:back, class:"btn btn-primary" %>
    </div>
