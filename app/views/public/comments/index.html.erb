@@ -19,7 +19,7 @@
             <%= image_tag comment.post.image, size: "100x100" %>
           <% end %>
         </td>
-        <% if post.user == current_user %>
+        <% if comment.user == current_user %>
         <td class="text-center"><%= link_to "削除",public_post_comment_path(comment.post.id,comment),method: :delete, class:"btn btn-secondary" %></td>
         <% end %>
       </tr> 
