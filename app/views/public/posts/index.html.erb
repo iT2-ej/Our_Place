@@ -44,7 +44,7 @@
     <% #if current_user.email != 'guest@example.com'  %>
     <td>
       <% if post.favorited?(current_user) %>
-        <%= link_to public_favorite_path(post.id), method: :delete do %>
+        <%= link_to public_favorite_path(post.favorited(current_user).id), method: :delete do %>
         <%= post.favorites.count %>
         <span style="color:red;">❤︎</span>
       <% end %>
