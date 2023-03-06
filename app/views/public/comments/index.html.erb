@@ -6,7 +6,9 @@
       <tr>
         <th class="text-center">本文</th>
         <th class="text-center">投稿画像</th>
+        <% if post.user == current_user %>
         <th></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>

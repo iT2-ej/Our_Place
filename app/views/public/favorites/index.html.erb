@@ -9,7 +9,9 @@
         <th class="text-center">投稿本文</th>
         <th class="text-center">投稿画像</th>
         <th class="text-center">投稿タグ</th>
+        <% if favorite.user == current_user %>
         <th></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -26,7 +28,7 @@
           <%= tag.tag_name %>
         <% end %>
       </td>
-      <% if post.user == current_user %>
+      <% if favorite.user == current_user %>
       <td class="text-center"><%= link_to "削除",public_favorite_path(favorite),method: :delete, class:"btn btn-secondary" %></td>
       <% end %>
     </tbody>
