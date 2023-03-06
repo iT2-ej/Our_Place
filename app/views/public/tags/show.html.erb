@@ -1,23 +1,28 @@
 <h1>タグ詳細</h1>
-  <table>
-　<% @posts.each do |post| %>
-　  <tr>
-　    <td>
-　     <% if post.image.attached? %>
-       <%= image_tag post.image, size: "100x100" %>
-       <% end %>
-　    </td>
-　    <td>
-　     <%= post.title %>
-　    </td> 
-　    <td>
-　     <%= post.body %>
-　    </td>
-　    <td>
-　     <% post.tags.each do |tag| %>
-　      <%= link_to "##{tag.tag_name}", public_tag_path(tag) %>
-　     <% end %>
-　    </td>
-　 </tr>
-　<% end %>
- </table>
+  <table class="table table-hover">
+    <thead>
+      <th>投稿タイトル</th>
+      <th>投稿本文</th>
+      <th>投稿画像</th>
+      <th>タグ</th>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td> 
+        <td><%= post.body %></td>
+        <td>
+         <% if post.image.attached? %>
+         <%= image_tag post.image, size: "100x100" %>
+         <% end %>
+        </td>
+        <td>
+        <% post.tags.each do |tag| %>
+          <%= link_to "##{tag.tag_name}", public_tag_path(tag) %>
+        <% end %>
+        </td>
+        </tr>
+        <% end %>
+    </tbody>   
+   </table>
+   
