@@ -9,7 +9,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @profile_image = @user.profile_image
     # byebug
-    @posts = @user.posts
+    @posts = @user.posts.order(created_at: :desc)
   end
   
   def unsubscribe
