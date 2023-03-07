@@ -6,7 +6,9 @@
       <tr>
         <th class="text-center">本文</th>
         <th class="text-center">投稿画像</th>
+        <% if comment.user == current_user %>
         <th></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -17,7 +19,9 @@
             <%= image_tag comment.post.image, size: "100x100" %>
           <% end %>
         </td>
+        <% if comment.user == current_user %>
         <td class="text-center"><%= link_to "削除",public_post_comment_path(comment.post.id,comment),method: :delete, class:"btn btn-secondary" %></td>
+        <% end %>
       </tr> 
     </tbody>
     <% end %>
